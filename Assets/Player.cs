@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            Vector2 pos = transform.position;
+            Vector3 pos = transform.position;
             if (animator.GetInteger("Status") != 3)
             {
                 pos.x += (1.5f * key);
@@ -37,7 +37,11 @@ public class Player : MonoBehaviour
                 pos.x += 1.4f * key;
                 pos.y += 1.9f;
             }
-            Instantiate(Bullet,pos, Quaternion.identity);
+            GameObject clone = Instantiate(Bullet, pos,Quaternion.identity);        // 弾オブジェクトの移動量ベクトルを作成（数値情報）
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 shotForward = Vector3.Scale((mouseWorldPos - pos), new Vector3(1, 1, 0)).normalized;
+            // Rigidbody2D に移動量を加算する
+            clone.GetComponent<Rigidbody2D>().velocity = shotForward * 10.0f;
         }
     }
     public static int GetRot()
