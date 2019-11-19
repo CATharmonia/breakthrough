@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rigid2D;
     Animator animator;
-    float jumpForce = 680.0f;
-    float walkForce = 30.0f;
-    float maxWalkSpeed = 2.0f;
+    float jumpForce = 350.0f;
+    float walkForce = 40.0f;
+    float maxWalkSpeed = 3.0f;
 
     void Start()
     {
@@ -22,9 +22,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // ジャンプする
-        if (Input.GetKeyDown(KeyCode.UpArrow) && this.rigid2D.velocity.y == 0)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && this.rigid2D.velocity.y == 0 && animator.GetInteger("Status")!=3)
         {
-
             this.rigid2D.AddForce(transform.up * this.jumpForce);
         }
         //左右移動
@@ -34,7 +33,7 @@ public class PlayerController : MonoBehaviour
         //プレイヤの速度
         float speedx = Mathf.Abs(this.rigid2D.velocity.x);
         //スピード制限
-        if (speedx < this.maxWalkSpeed)
+        if (speedx < this.maxWalkSpeed && animator.GetInteger("Status")!=3)
         {
             this.rigid2D.AddForce(transform.right * key * this.walkForce);
         }
@@ -43,18 +42,20 @@ public class PlayerController : MonoBehaviour
         {
             transform.localScale = new Vector3(key, 1, 1);
         }
-        if (this.rigid2D.velocity.y == 0)
+        if (rigid2D.velocity.y != 0)
         {
-            this.animator.speed = speedx / 2.0f;
+            animator.SetInteger("Status", 1);
+        }else if (rigid2D.velocity.x != 0 && rigid2D.velocity.y == 0)
+        {
+            animator.SetInteger("Status", 2);
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            animator.SetInteger("Status", 3);
         }
         else
         {
-            this.animator.speed = 1.0f;
-        }
-        // 画面外に出た場合は最初から
-        if (transform.position.y < -10)
-        {
-            SceneManager.LoadScene("GameScene");
+            animator.SetInteger("Status", 0);
         }
     }
 }

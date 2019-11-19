@@ -18,11 +18,11 @@ public class Bullet : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         // 弾オブジェクトの移動係数を初期化
         bulletSpeed = 10.0f;
+        BulletMove();
     }
     void Update()
     {
         // 弾オブジェクトの移動関数
-        BulletMove();
         life += bulletlife * Time.deltaTime;
         if(life > bulletlife)
         {
@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
         // 弾オブジェクトの移動量ベクトルを作成（数値情報）
         Vector2 bulletMovement = new Vector2(1, 0).normalized;
         // Rigidbody2D に移動量を加算する
-        rb2d.velocity = bulletMovement * bulletSpeed;
+        rb2d.velocity = bulletMovement * bulletSpeed * Player.GetRot() ;
     }
     // ENEMYと接触したときの関数
     void OnCollisionEnter2D(Collision2D collision)
