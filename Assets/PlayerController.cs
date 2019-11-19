@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;  // LoadSceneを使うために必要!!
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,7 +9,7 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     float jumpForce = 350.0f;
     float walkForce = 40.0f;
-    float maxWalkSpeed = 3.0f;
+    float maxWalkSpeed = 5.0f;
 
     void Start()
     {
@@ -31,11 +30,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow)) key = 1;
         if (Input.GetKey(KeyCode.LeftArrow)) key = -1;
         //プレイヤの速度
-        float speedx = Mathf.Abs(this.rigid2D.velocity.x);
         //スピード制限
-        if (speedx < this.maxWalkSpeed && animator.GetInteger("Status")!=3)
+        if (animator.GetInteger("Status") != 3)
         {
-            this.rigid2D.AddForce(transform.right * key * this.walkForce);
+            if (rigid2D.velocity.x > maxWalkSpeed && key == -1 || rigid2D.velocity.x < maxWalkSpeed * -1 && key == 1 || maxWalkSpeed*-1<rigid2D.velocity.x && rigid2D.velocity.x<maxWalkSpeed)
+            {
+                this.rigid2D.AddForce(transform.right * key * this.walkForce);
+            }
         }
         // 動く方向に応じて反転
         if (key != 0)
