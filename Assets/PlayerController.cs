@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         this.rigid2D = GetComponent<Rigidbody2D>();
-        this.animator = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
         int key = 0;
         if (Input.GetKey(KeyCode.RightArrow)) key = 1;
         if (Input.GetKey(KeyCode.LeftArrow)) key = -1;
+
+
         //プレイヤの速度
         //スピード制限
         if (animator.GetInteger("Status") != 3)
