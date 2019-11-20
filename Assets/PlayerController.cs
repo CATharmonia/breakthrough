@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         this.rigid2D = GetComponent<Rigidbody2D>();
+        this.animator = GetComponent<Animator>();
         
     }
 
