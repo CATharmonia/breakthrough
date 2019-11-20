@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         this.rigid2D = GetComponent<Rigidbody2D>();
+        this.animator = GetComponent<Animator>();
         
     }
 
@@ -52,13 +53,13 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetInteger("Status", 2);
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            animator.SetInteger("Status", 3);
-        }
         else
         {
             animator.SetInteger("Status", 0);
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            animator.SetInteger("Status", 3);
         }
     }
 }
