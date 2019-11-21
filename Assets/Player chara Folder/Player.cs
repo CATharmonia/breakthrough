@@ -1,21 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] GameObject Bullet;
+    [SerializeField]
+    float bulletGauge = 100;
+    float bulletGaugeMax;
+    [SerializeField]
+    float bulletRecovery = 10;
+    [SerializeField]
+    float bulletCost = 5;
+    [SerializeField]
+    float los = 3;
+    [SerializeField]
+    GameObject Bullet;
     Animator animator;
     static int key = 1;
+    bool canShot=true;
+    float losTime = 0;
     // Start is called before the first frame update
     void Start()
     {
         this.animator = GetComponent<Animator>();
+        bulletGaugeMax = bulletGauge;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (canShot == true)
+        {
+            bulletGauge += bulletRecovery * Time.deltaTime;
+        }
+        if (bulletGauge > bulletGaugeMax)
+        {
+            bulletGauge = bulletGaugeMax;
+        }
         if (Input.GetKey(KeyCode.RightArrow))
         {
             key = 1;
@@ -24,8 +46,9 @@ public class Player : MonoBehaviour
         {
             key = -1;
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)&&canShot==true)
         {
+            bulletGauge -= bulletCost;
             Vector3 pos = transform.position;
             if (animator.GetInteger("Status") != 3)
             {
@@ -40,6 +63,22 @@ public class Player : MonoBehaviour
             GameObject clone = Instantiate(Bullet, pos,Quaternion.identity);   
             // Rigidbody2D に移動量を加算する
             clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1*key,0,0) * 10.0f;
+        }
+        if (bulletGauge < 0)
+        {
+            canShot = false;
+            bulletGaugeMax *= 0.8f;
+            bulletGauge = 0;
+        }
+        if (canShot == false)
+        {
+            losTime += Time.deltaTime;
+        }
+        if (losTime > los)
+        {
+            bulletGauge = bulletGaugeMax / 2;
+            losTime = 0;
+            canShot = true;
         }
     }
     public static int GetRot()

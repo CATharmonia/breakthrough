@@ -565,6 +565,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 859ab687991fb844bb1364a1b85bcfcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletGauge: 100
+  bulletRecovery: 10
+  bulletCost: 5
+  los: 3
   Bullet: {fileID: 1938923743222375363, guid: ebf16378c30e291489fc84dd452949cc, type: 3}
 --- !u!1 &1383393930
 GameObject:
