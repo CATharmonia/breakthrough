@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     float bulletlife = 2.0f;
     float life = 0;
+    int bulletPower = 2;
     async void Start()
     {
         await Task.Delay(400);
@@ -20,5 +21,14 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Monster")
+        {
+            collision.gameObject.GetComponent<DogMove>().EnemyDamage(bulletPower);
+            Destroy(this.gameObject);
+        }
+
     }
 }
