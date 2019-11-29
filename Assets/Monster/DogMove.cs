@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DogMove : MonoBehaviour
+public class DogMove : Enemy
 {
     [SerializeField]
     float span = 4.0f;
@@ -10,26 +10,31 @@ public class DogMove : MonoBehaviour
     float walkPower = 3.0f;
     Rigidbody2D rid2D;
     public GameObject player;
-    int hp = 10;
+    Animator anime;
 
     float walkTimer = 0;
     // Start is called before the first frame update
     void Start()
     {
+        anime = GetComponent<Animator>();
         rid2D = GetComponent<Rigidbody2D>();
+        base.hp = 10;
     }
 
     // Update is called once per frame
     void Update()
     {
+        this.anime.SetBool("Jump", false);
         if (hp <= 0)
         {
             Destroy(this.gameObject);
         }
         int key;
-        walkTimer += Time.deltaTime;
+        int a =Random.Range(0, 3);
+        walkTimer += Time.deltaTime*a;
         if (walkTimer > span)
         {
+            this.anime.SetBool("Jump", true);
             walkTimer = 0;
             if (player.transform.position.x < this.transform.position.x)
             {
@@ -39,12 +44,9 @@ public class DogMove : MonoBehaviour
             {
                 key = 1;
             }
-
+            transform.localScale = new Vector3(-1*key* Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, 1);
             rid2D.velocity= new Vector3(walkPower*key, 2, 0);
         }
     }
-    public void EnemyDamage(int power)
-    {
-        hp -= power;
-    }
+
 }

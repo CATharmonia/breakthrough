@@ -7,12 +7,9 @@ public class Bullet : MonoBehaviour
     float bulletlife = 2.0f;
     float life = 0;
     int bulletPower = 2;
-    async void Start()
+    void Start()
     {
-        await Task.Delay(400);
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 shotForward = Vector3.Scale((mouseWorldPos - this.transform.position), new Vector3(1, 1, 0)).normalized;
-        this.GetComponent<Rigidbody2D>().velocity = shotForward * 10.0f;
+        Curve();
     }
     void Update()
     {
@@ -26,9 +23,16 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Monster")
         {
-            collision.gameObject.GetComponent<DogMove>().EnemyDamage(bulletPower);
+            collision.gameObject.GetComponent<Enemy>().EnemyDamage(bulletPower);
             Destroy(this.gameObject);
         }
 
+    }
+    async void Curve()
+    {
+        await Task.Delay(400);
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 shotForward = Vector3.Scale((mouseWorldPos - this.transform.position), new Vector3(1, 1, 0)).normalized;
+        this.GetComponent<Rigidbody2D>().velocity = shotForward * 10.0f;
     }
 }
