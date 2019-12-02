@@ -98,7 +98,7 @@ MonoBehaviour:
   hp: 10
   span: 1.5
   walkPower: 7
-  player: {fileID: 0}
+  player: {fileID: 9097701486177240751, guid: 599d4fa30143a634c889cafc8632018b, type: 3}
 --- !u!50 &3873132797789116101
 Rigidbody2D:
   serializedVersion: 4

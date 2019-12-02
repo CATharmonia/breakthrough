@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   flyPower: 3
-  player: {fileID: 0}
+  player: {fileID: 9097701486177240751, guid: 599d4fa30143a634c889cafc8632018b, type: 3}
 --- !u!114 &3644251239366605318
 MonoBehaviour:
   m_ObjectHideFlags: 0

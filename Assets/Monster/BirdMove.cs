@@ -6,12 +6,12 @@ public class BirdMove : Enemy
 {
     [SerializeField]
     float flyPower = 3.0f;
-    Rigidbody2D rid2d;
-    public GameObject player;
+    Rigidbody2D rid2d;GameObject player;
     int key;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("chara");
         base.hp = 15;
         rid2d = GetComponent<Rigidbody2D>();
     }

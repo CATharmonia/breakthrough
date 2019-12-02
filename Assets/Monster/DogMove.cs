@@ -9,13 +9,14 @@ public class DogMove : Enemy
     [SerializeField]
     float walkPower = 3.0f;
     Rigidbody2D rid2D;
-    public GameObject player;
+    GameObject player;
     Animator anime;
 
     float walkTimer = 0;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("chara");
         anime = GetComponent<Animator>();
         rid2D = GetComponent<Rigidbody2D>();
         base.hp = 10;

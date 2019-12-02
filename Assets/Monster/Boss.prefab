@@ -118,7 +118,7 @@ MonoBehaviour:
   walkPower: 10
   jumpPower: 20
   span: 3
-  player: {fileID: 0}
+  player: {fileID: 9097701486177240751, guid: 599d4fa30143a634c889cafc8632018b, type: 3}
 --- !u!50 &7604341384566554982
 Rigidbody2D:
   serializedVersion: 4

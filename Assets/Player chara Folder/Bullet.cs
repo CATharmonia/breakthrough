@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
     float life = 0;
     int bulletPower = 2;
     bool isCurve = false;
+    [SerializeField]
+    GameObject effect;
     void Start()
     {
     }
@@ -27,6 +29,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Monster")
         {
+            Instantiate(effect, this.transform.position, Quaternion.identity);
             collision.gameObject.GetComponent<Enemy>().EnemyDamage(bulletPower);
             Destroy(this.gameObject);
         }

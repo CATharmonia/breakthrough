@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BirdBullet : MonoBehaviour
 {
-    [SerializeField]
     GameObject player;
     int key;
     [SerializeField]
@@ -13,6 +12,7 @@ public class BirdBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("chara");
         if (player.transform.position.x < this.transform.position.x)
         {
             key = -1;
