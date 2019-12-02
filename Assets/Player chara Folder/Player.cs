@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
         {
             key = -1;
         }
-        if (Input.GetMouseButtonDown(0)&&canShot==true)
+        if (Input.GetMouseButtonDown(0) && canShot == true)
         {
             bulletGauge -= bulletCost;
             Vector3 pos = transform.position;
@@ -60,9 +60,17 @@ public class Player : MonoBehaviour
                 pos.x += 1.4f * key;
                 pos.y += 1.9f;
             }
-            GameObject clone = Instantiate(Bullet, pos,Quaternion.identity);   
+            GameObject clone = Instantiate(Bullet, pos, Quaternion.identity);
             // Rigidbody2D に移動量を加算する
-            clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1*key,0,0) * 10.0f;
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1 * key, 0, 0) * 10.0f;
+            }
+            else
+            {
+                float a = Random.Range(-0.5f, 0.5f);
+                clone.GetComponent<Rigidbody2D>().velocity = new Vector3(1 * key, a, 0) * 10.0f;
+            }
         }
         if (bulletGauge < 0)
         {
