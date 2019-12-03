@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerDamage : MonoBehaviour
 {
-    [SerializeField]
-    int playerHP = 20;
+    public int playerHP = 20;
     [SerializeField]
     float mutekiTime = 2.0f;
     float timer = 0;

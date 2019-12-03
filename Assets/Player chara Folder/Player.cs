@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    float bulletGauge = 100;
+    
+    public float bulletGauge = 100;
     float bulletGaugeMax;
     [SerializeField]
     float bulletRecovery = 10;
