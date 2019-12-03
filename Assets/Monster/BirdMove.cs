@@ -11,6 +11,7 @@ public class BirdMove : Enemy
     // Start is called before the first frame update
     void Start()
     {
+        base.power = 1;
         player = GameObject.Find("chara");
         base.hp = 15;
         rid2d = GetComponent<Rigidbody2D>();

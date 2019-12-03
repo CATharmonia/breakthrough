@@ -16,6 +16,7 @@ public class DogMove : Enemy
     // Start is called before the first frame update
     void Start()
     {
+        base.power = 3;
         player = GameObject.Find("chara");
         anime = GetComponent<Animator>();
         rid2D = GetComponent<Rigidbody2D>();

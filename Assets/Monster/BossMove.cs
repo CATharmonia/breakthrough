@@ -11,13 +11,14 @@ public class BossMove : Enemy
     [SerializeField]
     float span = 9;
     float timer = 0;
-    [SerializeField]
     GameObject player;
     Rigidbody2D rid2d;
     int jumpCnt = 0;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("chara");
+        power = 5;
         hp = 200;
         rid2d = GetComponent<Rigidbody2D>();
     }

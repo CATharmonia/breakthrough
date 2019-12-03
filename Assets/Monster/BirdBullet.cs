@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BirdBullet : MonoBehaviour
+public class BirdBullet : Enemy
 {
     GameObject player;
     int key;
@@ -12,6 +12,7 @@ public class BirdBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        base.power = 2;
         player = GameObject.Find("chara");
         if (player.transform.position.x < this.transform.position.x)
         {
