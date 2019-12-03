@@ -6,7 +6,7 @@ public class BirdMove : Enemy
 {
     [SerializeField]
     float flyPower = 3.0f;
-    Rigidbody2D rid2d;GameObject player;
+    Rigidbody2D rid2d; GameObject player;
     int key;
     // Start is called before the first frame update
     void Start()
@@ -20,20 +20,24 @@ public class BirdMove : Enemy
     // Update is called once per frame
     void Update()
     {
-        if (hp <= 0)
+        float dis = Vector3.Distance(player.transform.position, this.gameObject.transform.position);
+        if (dis < 25)
         {
-            Destroy(this.gameObject);
-        }
-        if (player.transform.position.x < this.transform.position.x)
-        {
-            key = -1;
-        }
-        else
-        {
-            key = 1;
-        }
+            if (hp <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+            if (player.transform.position.x < this.transform.position.x)
+            {
+                key = -1;
+            }
+            else
+            {
+                key = 1;
+            }
 
-        transform.localScale = new Vector3(-1 * key * Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, 1);
-        rid2d.AddForce(new Vector2(flyPower * key, 0));
+            transform.localScale = new Vector3(-1 * key * Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, 1);
+            rid2d.AddForce(new Vector2(flyPower * key, 0));
+        }
     }
 }

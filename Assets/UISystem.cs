@@ -13,13 +13,21 @@ public class UISystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        player = GameObject.Find("chara");
     }
 
     // Update is called once per frame
     void Update()
     {
         HP.text=("HP : "+(int)player.GetComponent<PlayerDamage>().playerHP);
-        BulletP.text = ("Bullet Power : " + (int)player.GetComponent<Player>().bulletGauge);
+        if ((int)player.GetComponent<Player>().bulletGauge == 0)
+        {
+            BulletP.text = ("OVER HEAT!!!");
+        }
+        else
+        {
+            BulletP.text = ("Bullet Power : " + (int)player.GetComponent<Player>().bulletGauge);
+        }
+        
     }
 }

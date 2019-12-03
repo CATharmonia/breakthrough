@@ -26,29 +26,33 @@ public class DogMove : Enemy
     // Update is called once per frame
     void Update()
     {
-        this.anime.SetBool("Jump", false);
-        if (hp <= 0)
+        float dis = Vector3.Distance(player.transform.position, this.gameObject.transform.position);
+        if (dis < 25)
         {
-            Destroy(this.gameObject);
-        }
-        int key;
-        int a =Random.Range(0, 3);
-        walkTimer += Time.deltaTime*a;
-        if (walkTimer > span)
-        {
-            this.anime.SetBool("Jump", true);
-            walkTimer = 0;
-            if (player.transform.position.x < this.transform.position.x)
+            this.anime.SetBool("Jump", false);
+            if (hp <= 0)
             {
-                key = -1;
+                Destroy(this.gameObject);
             }
-            else
+            int key;
+            int a = Random.Range(0, 3);
+            walkTimer += Time.deltaTime * a;
+            if (walkTimer > span)
             {
-                key = 1;
+                this.anime.SetBool("Jump", true);
+                walkTimer = 0;
+                if (player.transform.position.x < this.transform.position.x)
+                {
+                    key = -1;
+                }
+                else
+                {
+                    key = 1;
+                }
+                transform.localScale = new Vector3(-1 * key * Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, 1);
+                rid2D.velocity = new Vector3(walkPower * key, 2, 0);
             }
-            transform.localScale = new Vector3(-1*key* Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, 1);
-            rid2D.velocity= new Vector3(walkPower*key, 2, 0);
         }
-    }
 
+    }
 }

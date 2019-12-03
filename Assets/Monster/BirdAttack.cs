@@ -9,21 +9,27 @@ public class BirdAttack : MonoBehaviour
     float timer = 0;
     [SerializeField]
     GameObject bullet;
+    GameObject player;
     Vector3 pos;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("chara");
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > attackSpan)
+        float dis = Vector3.Distance(player.transform.position, this.gameObject.transform.position);
+        if (dis < 25)
         {
-            pos = this.transform.position;
-            Instantiate(bullet,pos,Quaternion.identity);
-            timer = 0;
+            timer += Time.deltaTime;
+            if (timer > attackSpan)
+            {
+                pos = this.transform.position;
+                Instantiate(bullet, pos, Quaternion.identity);
+                timer = 0;
+            }
         }
     }
 }

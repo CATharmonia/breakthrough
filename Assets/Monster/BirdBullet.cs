@@ -12,6 +12,7 @@ public class BirdBullet : Enemy
     // Start is called before the first frame update
     void Start()
     {
+        hp = 1;
         base.power = 2;
         player = GameObject.Find("chara");
         if (player.transform.position.x < this.transform.position.x)
@@ -31,6 +32,10 @@ public class BirdBullet : Enemy
     // Update is called once per frame
     void Update()
     {
+        if (hp <= 0)
+        {
+            Destroy(this.gameObject);
+        }
         timer += Time.deltaTime;
         if (timer > bulletLife)
         {

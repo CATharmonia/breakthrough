@@ -42,6 +42,16 @@ public class PlayerDamage : MonoBehaviour
             Debug.Log("aaa");
         }
     }
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Monster" && muteki == false)
+        {
+            muteki = true;
+            timer = 0;
+            Damage(collision.gameObject.GetComponent<Enemy>().power);
+            Debug.Log("aaa");
+        }
+    }
     public void Damage(int power)
     {
         playerHP -= power;

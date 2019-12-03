@@ -26,36 +26,40 @@ public class BossMove : Enemy
     // Update is called once per frame
     void Update()
     {
-        if (hp <= 0)
+        float dis = Vector3.Distance(player.transform.position, this.gameObject.transform.position);
+        if (dis < 25)
         {
-            Destroy(this.gameObject);
-        }
-        int key;
-        timer += Time.deltaTime;
-        if (timer > span)
-        {
+            if (hp <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+            int key;
+            timer += Time.deltaTime;
+            if (timer > span)
+            {
 
-            if (player.transform.position.x < this.transform.position.x)
-            {
-                key = -1;
+                if (player.transform.position.x < this.transform.position.x)
+                {
+                    key = -1;
+                }
+                else
+                {
+                    key = 1;
+                }
+                transform.localScale = new Vector3(-1 * key * Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, 1);
+                if (jumpCnt == 2)
+                {
+                    rid2d.velocity = new Vector3(key, 8, 0).normalized * jumpPower;
+                    jumpCnt = -1;
+                    timer = -4;
+                }
+                else
+                {
+                    rid2d.velocity = new Vector3(key, 8, 0).normalized * walkPower;
+                    timer = 0;
+                }
+                jumpCnt++;
             }
-            else
-            {
-                key = 1;
-            }
-            transform.localScale = new Vector3(-1 * key * Mathf.Abs(this.transform.localScale.x), this.transform.localScale.y, 1);
-            if (jumpCnt == 2)
-            {
-                rid2d.velocity = new Vector3(key, 8, 0).normalized * jumpPower;
-                jumpCnt = -1;
-                timer = -4;
-            }
-            else
-            {
-                rid2d.velocity = new Vector3(key, 8, 0).normalized * walkPower;
-                timer = 0;
-            }
-            jumpCnt++;
         }
     }
 }
