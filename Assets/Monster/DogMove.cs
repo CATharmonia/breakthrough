@@ -11,11 +11,13 @@ public class DogMove : Enemy
     Rigidbody2D rid2D;
     GameObject player;
     Animator anime;
+    AudioSource aud;
 
     float walkTimer = 0;
     // Start is called before the first frame update
     void Start()
     {
+        aud = GetComponent<AudioSource>();
         base.power = 3;
         player = GameObject.Find("chara");
         anime = GetComponent<Animator>();
@@ -31,6 +33,7 @@ public class DogMove : Enemy
         {
             this.anime.SetBool("Jump", false);
             if (hp <= 0)
+                aud.Play();
             {
                 Destroy(this.gameObject);
             }

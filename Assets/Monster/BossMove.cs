@@ -14,9 +14,11 @@ public class BossMove : Enemy
     GameObject player;
     Rigidbody2D rid2d;
     int jumpCnt = 0;
+    AudioSource aud;
     // Start is called before the first frame update
     void Start()
     {
+        aud = GetComponent<AudioSource>();
         player = GameObject.Find("chara");
         power = 5;
         hp = 200;
@@ -31,6 +33,7 @@ public class BossMove : Enemy
         {
             if (hp <= 0)
             {
+                aud.Play();
                 Destroy(this.gameObject);
             }
             int key;

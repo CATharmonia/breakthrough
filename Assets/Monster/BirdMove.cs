@@ -7,10 +7,12 @@ public class BirdMove : Enemy
     [SerializeField]
     float flyPower = 3.0f;
     Rigidbody2D rid2d; GameObject player;
+    AudioSource aud;
     int key;
     // Start is called before the first frame update
     void Start()
     {
+        aud = GetComponent<AudioSource>();
         base.power = 1;
         player = GameObject.Find("chara");
         base.hp = 15;
@@ -25,6 +27,7 @@ public class BirdMove : Enemy
         {
             if (hp <= 0)
             {
+                aud.Play();
                 Destroy(this.gameObject);
             }
             if (player.transform.position.x < this.transform.position.x)

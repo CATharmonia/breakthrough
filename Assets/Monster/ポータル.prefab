@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 453959908867826841}
   - component: {fileID: 6988690975357942674}
   - component: {fileID: 5115386314451621235}
-  - component: {fileID: 3407127043940328701}
   - component: {fileID: 58547000971299498}
   m_Layer: 0
   m_Name: "\u30DD\u30FC\u30BF\u30EB"
@@ -98,22 +97,6 @@ MonoBehaviour:
   power: 0
   sp: 2
   enemy: {fileID: 3644251239366591999, guid: dc2cce4721c1bc14e90b9f72462c8fa0, type: 3}
---- !u!114 &3407127043940328701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5461117072636071687}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3fa60e7e29c1af42893a017f7405f03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  power: 0
-  sp: 2
-  enemy: {fileID: 0}
 --- !u!58 &58547000971299498
 CircleCollider2D:
   m_ObjectHideFlags: 0

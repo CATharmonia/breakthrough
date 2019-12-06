@@ -6,7 +6,7 @@ public class Spawner : Enemy
 {
     [SerializeField]
     float sp = 2.0f;
-    float timer = 0;
+    float timer = 25;
     [SerializeField]
     GameObject enemy;
     GameObject player;
