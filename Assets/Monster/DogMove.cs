@@ -33,8 +33,8 @@ public class DogMove : Enemy
         {
             this.anime.SetBool("Jump", false);
             if (hp <= 0)
-                aud.Play();
             {
+                aud.Play();
                 Destroy(this.gameObject);
             }
             int key;
