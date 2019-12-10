@@ -3682,6 +3682,12 @@ PrefabInstance:
       propertyPath: orthographic size
       value: 7.81
       objectReference: {fileID: 0}
+    - target: {fileID: 7830620338142273715, guid: fbe2d683ca119504ca1fb0ccdbd45a2c,
+        type: 3}
+      propertyPath: Bullet
+      value: 
+      objectReference: {fileID: 2211098678358198826, guid: e8d57b386aaf4244686a26cdc2545e07,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbe2d683ca119504ca1fb0ccdbd45a2c, type: 3}
 --- !u!1 &1296647936
