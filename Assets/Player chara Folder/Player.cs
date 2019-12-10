@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 {
     
     public float bulletGauge = 100;
-    float bulletGaugeMax;
+    public float bulletGaugeMax;
     [SerializeField]
     float bulletRecovery = 10;
     [SerializeField]

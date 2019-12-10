@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 231a3db266507c9428cbb67a69075ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPower: 2
   effect: {fileID: 8734393416877795513, guid: 250670a759946664e9090de493ff87b4, type: 3}
   Bsound: {fileID: 8300000, guid: e1edb8dcf7c1b1145a323d7ddcaef53c, type: 3}
 --- !u!58 &6461317202975885352

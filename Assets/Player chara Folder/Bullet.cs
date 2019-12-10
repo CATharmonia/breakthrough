@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour
 {
     float bulletlife = 2.0f;
     float life = 0;
-    int bulletPower = 2;
+    public int bulletPower = 2;
     bool isCurve = false;
     [SerializeField]
     GameObject effect;
