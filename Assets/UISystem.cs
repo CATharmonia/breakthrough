@@ -10,10 +10,14 @@ public class UISystem : MonoBehaviour
     Text HP;
     [SerializeField]
     Text BulletP;
+    [SerializeField]
+    Text BulletDamage;
+    public GameObject bullet;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("chara");
+
     }
 
     // Update is called once per frame
@@ -28,6 +32,6 @@ public class UISystem : MonoBehaviour
         {
             BulletP.text = ("Bullet Power : " + (int)player.GetComponent<Player>().bulletGauge);
         }
-        
+        BulletDamage.text = ("Bullet Damage : " + bullet.GetComponent<Bullet>().bulletPower);
     }
 }
