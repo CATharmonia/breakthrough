@@ -10,12 +10,18 @@ public class PlayerController : MonoBehaviour
     float jumpForce = 350.0f;
     float walkForce = 80.0f;
     float maxWalkSpeed = 5.0f;
+    int ro;
+    public AudioClip sound1;
+    AudioSource audioSource;
 
     void Start()
     {
         this.rigid2D = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
-        
+        //Componentを取得
+        audioSource = GetComponent<AudioSource>();
+
+        int ro = 1;
     }
 
     // Update is called once per frame
@@ -27,14 +33,19 @@ public class PlayerController : MonoBehaviour
             this.rigid2D.AddForce(transform.up * this.jumpForce);
         }
         //左右移動
+    
         int key = 0;
-        if (Input.GetKey(KeyCode.RightArrow)) key = 1;
-        if (Input.GetKey(KeyCode.LeftArrow)) key = -1;
 
-
-        //プレイヤの速度
-        //スピード制限
-        if (animator.GetInteger("Status") != 3)
+            if (Input.GetKey(KeyCode.RightArrow)) { key = 1;ro -= 1;
+            
+        }
+        if (Input.GetKey(KeyCode.LeftArrow)) { key = -1;ro-= 1;
+            }
+        if (ro == 0) { audioSource.PlayOneShot(sound1); ro += 15; }
+        
+            //プレイヤの速度
+            //スピード制限
+            if (animator.GetInteger("Status") != 3)
         {
             if (rigid2D.velocity.x > maxWalkSpeed && key == -1 || rigid2D.velocity.x < maxWalkSpeed * -1 && key == 1 || maxWalkSpeed*-1<rigid2D.velocity.x && rigid2D.velocity.x<maxWalkSpeed)
             {
@@ -61,5 +72,6 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetInteger("Status", 3);
         }
+        
     }
 }

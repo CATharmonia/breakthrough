@@ -9,8 +9,13 @@ public class Bullet : MonoBehaviour
     bool isCurve = false;
     [SerializeField]
     GameObject effect;
+    public AudioClip Bsound;
+    AudioSource audioSource;
     void Start()
     {
+        //Componentを取得
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(Bsound);
     }
     void Update()
     {
